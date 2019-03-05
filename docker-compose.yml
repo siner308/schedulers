@@ -1,6 +1,7 @@
 version: '2'
 services:
   crawler:
+    restart: always
     build: .
     volumes:
       - /var/log:/var/log
