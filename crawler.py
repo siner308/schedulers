@@ -37,48 +37,52 @@ def crawling():
 
     logger.info('get url (%s)' % url)
     driver.get(url)
-    time.sleep(3)
+    time.sleep(10)
 
-    # click sign in
+    logger.info('click sign in')
     driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header/header/div/div[2]/a[1]').click()
-    time.sleep(3)
+    time.sleep(10)
     logger.info('input id')
     driver.find_element_by_name('mapiaEmail').send_keys(EMAIL)
     logger.info('input password')
+    time.sleep(3)
     driver.find_element_by_name('password').send_keys(PASSWORD)
-    logger.info('click summit')
+    logger.info('summit login')
+    time.sleep(3)
     driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/button').click()
-    time.sleep(5)
+    time.sleep(10)
 
     if driver.page_source.find('sinersound') != -1:
         logger.info('login success')
     else:
-        logger.info('login failed')
+        logger.info('login failed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
     logger.info('click point guide')
     driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-main/div[2]/a[1]/div[1]/img').click()
-    time.sleep(4)
+    time.sleep(5)
 
     logger.info('click lets get point! button')
     driver.find_element_by_xpath('//*[@id="write-page"]/div/div/div[3]/div/app-dailypoint/div/a').click()
-    time.sleep(4)
+    time.sleep(5)
 
     logger.info('click latest video')
     driver.find_element_by_xpath('//*[@id="blogList"]/div/div[2]/a[1]').click()
-    time.sleep(4)
+    time.sleep(5)
 
-    title = driver.find_element_by_xpath('//*[@id="blog"]/div/article/header/h4')
-    logger.info(title.text)
-
+    driver.find_element_by_xpath('//*[@id="blog"]/div/article/header/h4')
+    time.sleep(3)
+    logger.info('%s' % driver.text)
+    time.sleep(2)
     logger.info('[%s] comment = %s' % (datetime.datetime.now().strftime('%y%m%d %T'), COMMENT[RANDOM]))
     driver.find_element_by_xpath('//*[@id="comment-area-0"]').send_keys(COMMENT[RANDOM])
-    time.sleep(4)
-    logger.info('submit')
+    time.sleep(3)
+    logger.info('submit comment')
+    time.sleep(3)
     driver.find_element_by_xpath('//*[@id="blog"]/div/mapia-post-comment/div[1]/form/button').click()
-    time.sleep(4)
+    time.sleep(3)
     logger.info('success to add comment')
-
-    return 'done'
+    time.sleep(2)
+    driver.close()
 
 
 if __name__=='__main__':

@@ -1,8 +1,12 @@
 #!/bin/sh
 
-crontab -l > mycron
-echo "38 10 * * * python3 /app/crawler.py" >> mycron
-crontab mycron
-rm mycron
+crontab -l > /mycron
+echo "0 */8 * * * /usr/bin/python3.5 /app/crawler.py" >> /mycron
+crontab /mycron
+rm /mycron
+
+/etc/init.d/cron start
+
+crontab -l
 
 tail -f /var/log/mapiacrawler.log
