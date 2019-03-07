@@ -11,6 +11,7 @@ def get_my_logger(key):
     logger.addHandler(stream_handler)
 
     file_handler = logging.FileHandler('/var/log/%s.log' % key)
+    file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
     return logger
