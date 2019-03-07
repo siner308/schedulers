@@ -7,6 +7,7 @@ import datetime
 import time
 from selenium import webdriver
 from logger import get_my_logger
+from slack import slack_mapianist
 
 
 logger = get_my_logger('mapiacrawler')
@@ -58,7 +59,10 @@ def crawling():
     url = 'https://www.mapianist.com/main'
 
     logger.info('driver initialize')
-    driver = setup_chrome()
+    try:
+        driver = setup_chrome()
+    except Exception as e:
+        return 'none', e
 
     logger.info('get url (%s)' % url)
     driver.get(url)
@@ -107,7 +111,10 @@ def crawling():
     time.sleep(10)
     logger.info('success to add comment')
     time.sleep(2)
+    url = driver.current_url
     driver.close()
+
+    return url, COMMENT[RANDOM]
 
 
 if __name__=='__main__':
@@ -115,4 +122,8 @@ if __name__=='__main__':
     now = datetime.datetime.now()
     logger.info('%s (delay: %s seconds)' % (now, delay_time))
     time.sleep(delay_time)
-    crawling()
+    try:
+        url, comment = crawling()
+        slack_mapianist(url, comment)
+    except Exception as e:
+        slack_mapianist('none', str(e))

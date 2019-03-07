@@ -13,7 +13,7 @@ ENV LC_ALL="C.UTF-8"
 
 COPY . /app
 
-RUN pip3 install selenium
+RUN pip3 install selenium slacker
 RUN chmod -R 755 /app
 
 ENV TZ=Asia/Seoul
