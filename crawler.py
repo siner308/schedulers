@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
 
+import random
 import logging
 import os
 import datetime
@@ -26,10 +27,34 @@ def setup_chrome():
 def crawling():
     EMAIL = ''
     PASSWORD = ''
-    RANDOM = datetime.datetime.now().second % 4
+    COMMENT = [
+        '잘듣고갑니다~',
+        '잘듣고가요~',
+        '잘들었어요!',
+        '피아노 잘 치시네요~',
+        '너무 좋네요!',
+        '대단하시네요',
+        'wow!',
+        '잘듣고갑니닷',
+        '좋습니다앙',
+        '좋아요~',
+        '최고최고~',
+        '좋네요~ㅎ',
+        '잘봤어요~',
+        '피아노 대박이네요!!!',
+        '잘듣고가여',
+        '와 멋지다',
+        '피아노 느낌 대박 ㅎㅎ',
+        '멋져요!',
+        '잘들었어요~~~',
+        '좋아요!',
+        '잘 듣고 갑니다~',
+        '좋은 음악 감사합니다~',
+        '잘 들었어요 :)',
+        '너무 좋아요!!',
+    ]
 
-    COMMENT = ['잘듣고갑니다~', '잘듣고가요~', '잘들었어요!', '피아노 잘 치시네요~']
-
+    RANDOM = random.randrange(0, len(COMMENT) - 1)
     url = 'https://www.mapianist.com/main'
 
     logger.info('driver initialize')
@@ -86,4 +111,8 @@ def crawling():
 
 
 if __name__=='__main__':
+    delay_time = random.randrange(0, 10800)
+    now = datetime.datetime.now()
+    logger.info('%s (delay: %s seconds)' % (now, delay_time))
+    time.sleep(delay_time)
     crawling()
