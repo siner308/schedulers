@@ -7,11 +7,9 @@ class Env:
         f = open(filename, 'r')
         while True:
             line = f.readline()
-            print(line)
             if not line or line == '':
                 break
-            key_value = line.split('\n')[0].split('=')
-            print(key_value)
+            key_value = line.split('\n')[0].split(' = ')
             key = key_value[0]
             value = key_value[1]
             self.data['%s' % key] = value

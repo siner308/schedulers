@@ -123,7 +123,7 @@ if __name__=='__main__':
     logger.info('%s (delay: %s seconds)' % (now, delay_time))
     time.sleep(delay_time)
     try:
-        url, comment, title = crawling(envs.data['EMAIL'], envs.data['PASSWORD'])
+        url, comment, title = crawling(envs.data['MAPIA_EMAIL'], envs.data['MAPIA_PASSWORD'])
         slack_mapianist(url, comment, title)
     except Exception as e:
         slack_mapianist('none', str(e))

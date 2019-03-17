@@ -1,7 +1,8 @@
 #!/bin/sh
 
 crontab -l > /mycron
-echo "0 10,16,22 * * * cd /app && /usr/bin/python3.5 /app/crawler.py" >> /mycron
+echo "0 10,16,22 * * * cd /app && /usr/bin/python3.5 /app/mapianist.py" >> /mycron
+echo "*/10 * * * * cd /app && /usr/bin/python3.5 /app/youtube.py" >> /mycron
 crontab /mycron
 rm /mycron
 

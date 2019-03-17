@@ -5,4 +5,5 @@ services:
     build: .
     volumes:
       - /var/log:/var/log
+      - /data/crawler:/data/crawler
     command: ['/app/start']
