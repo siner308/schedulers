@@ -8,7 +8,7 @@ import time
 from selenium import webdriver
 from logger import get_my_logger
 from slack import slack_mapianist
-
+from environments import Env
 
 logger = get_my_logger('mapiacrawler')
 
@@ -25,9 +25,7 @@ def setup_chrome():
     return driver
 
 
-def crawling():
-    EMAIL = ''
-    PASSWORD = ''
+def crawling(EMAIL, PASSWORD):
     COMMENT = [
         '잘듣고갑니다~',
         '잘듣고가요~',
@@ -100,7 +98,8 @@ def crawling():
 
     driver.find_element_by_xpath('//*[@id="blog"]/div/article/header/h4')
     time.sleep(3)
-    logger.info('%s' % driver.title)
+    title = driver.title
+    logger.info('%s' % title)
     time.sleep(2)
     logger.info('[%s] comment = %s' % (datetime.datetime.now().strftime('%y%m%d %T'), COMMENT[RANDOM]))
     driver.find_element_by_xpath('//*[@id="comment-area-0"]').send_keys(COMMENT[RANDOM])
@@ -114,16 +113,17 @@ def crawling():
     url = driver.current_url
     driver.close()
 
-    return url, COMMENT[RANDOM]
+    return url, COMMENT[RANDOM], title
 
 
 if __name__=='__main__':
+    envs = Env('envs.txt')
     delay_time = random.randrange(0, 10800)
     now = datetime.datetime.now()
     logger.info('%s (delay: %s seconds)' % (now, delay_time))
     time.sleep(delay_time)
     try:
-        url, comment = crawling()
-        slack_mapianist(url, comment)
+        url, comment, title = crawling(envs.data['EMAIL'], envs.data['PASSWORD'])
+        slack_mapianist(url, comment, title)
     except Exception as e:
         slack_mapianist('none', str(e))
