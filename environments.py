@@ -1,3 +1,8 @@
+#-*- coding: utf-8 -*-
+
+from logger import get_my_logger
+
+
 class Env:
     def __init__(self, filename):
         self.data = dict()

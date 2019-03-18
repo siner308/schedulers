@@ -7,7 +7,7 @@ from logger import get_my_logger
 
 
 def slack_mapianist(url, comment, title=None):
-    envs = Env('envs.txt')
+    envs = Env('/app/envs.txt')
     token = envs.data['SLACK_TOKEN']
     channel = envs.data['SLACK_CHANNEL_MAPIANIST']
     username = envs.data['SLACK_USERNAME_MAPIANIST']
@@ -33,12 +33,11 @@ def slack_mapianist(url, comment, title=None):
     slack.chat.post_message(text=None, channel=channel, username=username, attachments=attachments, icon_url=icon_url)
 
 
-def slack_youtube(url, title, author, img_src):
-    envs = Env('envs.txt')
+def slack_youtube(url, title, author, img_src, icon_url):
+    envs = Env('/app/envs.txt')
     token = envs.data['SLACK_TOKEN']
     channel = envs.data['SLACK_CHANNEL_YOUTUBE']
     username = envs.data['SLACK_USERNAME_YOUTUBE']
-    icon_url = envs.data['SLACK_ICON_URL_YOUTUBE']
     if url != 'none':
         attachments = [{
             'title': title,
