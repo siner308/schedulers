@@ -37,6 +37,15 @@ def crawling(EMAIL, PASSWORD):
         '잘듣고갑니닷',
         '좋습니다앙',
         '좋아요~',
+        '좋아요~',
+        '잘 듣고가요',
+        '잘 듣고 갑니다~',
+        '굳굳굳굳!!',
+        '잘듣고갑니다',
+        '잘들었어요~',
+        '멋지네요~',
+        '좋아요~',
+        '잘 듣고가요~',
         '최고최고~',
         '좋네요~ㅎ',
         '잘봤어요~',
@@ -58,8 +67,9 @@ def crawling(EMAIL, PASSWORD):
     try:
         driver = setup_chrome()
     except Exception as e:
+        print('chrome exception')
         return 'none', e
-
+    print(url)
     driver.get(url)
     time.sleep(10)
 
@@ -81,7 +91,7 @@ def crawling(EMAIL, PASSWORD):
     driver.find_element_by_xpath('//*[@id="write-page"]/div/div/div[3]/div/app-dailypoint/div/a').click()
     time.sleep(5)
 
-    driver.find_element_by_xpath('//*[@id="blogList"]/div/div[2]/a[1]').click()
+    driver.find_element_by_xpath('//*[@id="blogList"]/div/div[3]/a[1]').click()
     time.sleep(5)
 
     driver.find_element_by_xpath('//*[@id="blog"]/div/article/header/h4')

@@ -2,7 +2,7 @@
 
 crontab -l > /mycron
 
-echo "*/2 * * * * cd /app && python3 /app/youtube.py" >> /mycron
+#echo "*/10 * * * * cd /app && python3 /app/youtube.py" >> /mycron
 echo "0 10,14,18,22 * * * cd /app && python3 /app/mapianist.py" >> /mycron
 
 crontab /mycron
