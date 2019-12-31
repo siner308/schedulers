@@ -7,6 +7,7 @@ from logger import get_my_logger
 
 
 def slack_mapianist(url, comment, title=None):
+    #envs = Env('./envs.txt')
     envs = Env('/app/envs.txt')
     token = envs.data['SLACK_TOKEN']
     channel = envs.data['SLACK_CHANNEL_MAPIANIST']
