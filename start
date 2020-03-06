@@ -12,4 +12,4 @@ rm /mycron
 
 crontab -l
 
-tail -f /var/log/mapiacrawler.log
+tail -f /app/log.txt

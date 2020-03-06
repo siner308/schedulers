@@ -4,6 +4,5 @@ services:
     restart: always
     build: .
     volumes:
-      - /var/log:/var/log
-      - /data/crawler:/data/crawler
+      - ${PWD}/log.txt:/app/log.txt
     command: ['/app/start']

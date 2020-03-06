@@ -13,7 +13,7 @@ def get_my_logger(key):
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    file_handler = logging.FileHandler('/var/log/%s.log' % key)
+    file_handler = logging.FileHandler('/app/log.txt')
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
