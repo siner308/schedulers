@@ -2,14 +2,24 @@ import logging
 import requests
 import json
 from slacker import Slacker
+from settings import SLACK_CHANNEL_GOOGLE_HOME_MINI
 from environments import Env
 from logger import get_my_logger
 
 
+envs = Env('/app/envs.txt')
+token = envs.data['SLACK_TOKEN']
+slack = Slacker(token)
+
+
+def slack_google_home_mini(result):
+    channel = SLACK_CHANNEL_GOOGLE_HOME_MINI
+    username = 'GoogleHomeMini'
+    icon_url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSvgAMRYdFDaOHkqCCtJjO5VTZiUau7P-cjzqJ3KvAh1BWztOMb'
+    slack.chat.post_message(text=result, channel=channel, username=username, icon_url=icon_url)
+
 def slack_mapianist(url, comment, title=None):
     #envs = Env('./envs.txt')
-    envs = Env('/app/envs.txt')
-    token = envs.data['SLACK_TOKEN']
     channel = envs.data['SLACK_CHANNEL_MAPIANIST']
     username = envs.data['SLACK_USERNAME_MAPIANIST']
     icon_url = envs.data['SLACK_ICON_URL_MAPIANIST']
@@ -30,7 +40,6 @@ def slack_mapianist(url, comment, title=None):
             'color': '#FF0000',
         }]
 
-    slack = Slacker(token)
     slack.chat.post_message(text=None, channel=channel, username=username, attachments=attachments, icon_url=icon_url)
 
 
