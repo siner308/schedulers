@@ -5,21 +5,38 @@ ENV LANG="C.UTF-8"
 
 ENV TZ=Asia/Seoul
 
-RUN apt-get update \
+COPY ./google-chrome-stable_current_amd64.deb /google-chrome-stable_current_amd64.deb
+
+RUN apt-get update && apt-get autoremove && apt-get autoclean \
     && apt-get install -y \
-    cron \
-    build-essential \
-    python3-pip \
-    chromium-browser \
-    tzdata \
-    vim
+        vim \
+        cron \
+        tzdata \
+        python3-pip \
+        build-essential \
+        libxss1 \
+        libgconf2-4 \
+        libappindicator1 \
+        libindicator7 \
+        fonts-liberation \
+        libasound2 \
+        libnspr4 \
+        libnss3 \
+        libx11-xcb1 \
+        wget \
+        xdg-utils \
+        libappindicator3-1 \
+        libatk-bridge2.0-0 \
+        libatspi2.0-0 \
+        libgtk-3-0 \
+    && dpkg -i /google-chrome-stable_current_amd64.deb \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 COPY . /app
 
 RUN pip3 install -U pip && pip install selenium slacker
 RUN chmod -R 755 /app
-
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /app
 

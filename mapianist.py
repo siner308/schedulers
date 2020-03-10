@@ -103,7 +103,7 @@ def crawling(EMAIL, PASSWORD):
     print(video_url)
     # 첫번째 게시글
     #driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-main/div[2]/a[1]/div[1]/img').click()
-    driver.find_element_by_xpath('//*[@id="page-wrap"]/post-video-browse/mapia-post-video-list/div/div[3]/a[1]').click()
+    driver.find_element_by_xpath('//*[@id="page-wrap"]/mp-post-video-browse/mapia-post-video-list/div/div[3]/a[1]').click()
     time.sleep(5)
     print('첫번째 게시글 들어왔음')
 #    driver.find_element_by_xpath('//*[@id="write-page"]/div/div/div[3]/div/app-dailypoint/div/a').click()
