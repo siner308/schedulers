@@ -68,9 +68,9 @@ def crawling(EMAIL, PASSWORD):
     try:
         driver = setup_chrome()
     except Exception as e:
-        print('chrome exception')
+        logger.info('chrome exception')
         return 'none', e, '고장났어!!!'
-    print(main_url)
+    logger.info(main_url)
     driver.get(main_url)
     time.sleep(10)
 
@@ -78,34 +78,34 @@ def crawling(EMAIL, PASSWORD):
     #driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header/header/div/div[2]/a[1]').click()
     driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header-v2/header/div/div[2]/a[3]').click()
     time.sleep(10)
-    print('로그인 눌렀음')
+    logger.info('로그인 눌렀음')
     # ID
     #driver.find_element_by_name('mapiaEmail').send_keys(EMAIL)
     driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/div[1]/mp-input-form/div[2]/input').send_keys(EMAIL)
     time.sleep(3)
-    print('아이디 입력했음')
+    logger.info('아이디 입력했음')
     # PASSWORD
     #driver.find_element_by_name('password').send_keys(PASSWORD)
     driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/div[2]/mp-input-form/div[2]/input').send_keys(PASSWORD)
     time.sleep(3)
-    print('비밀번호 입력했음')
+    logger.info('비밀번호 입력했음')
     # 로그인 버튼
     #driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/button').click()
     driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/button').click()
     time.sleep(10)
-    print('로그인 버튼 눌렀음')
+    logger.info('로그인 버튼 눌렀음')
     if driver.page_source.find('sinersound') == -1:
         logger.info('login failed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
     video_url = 'https://www.mapianist.com/video'
     driver.get(video_url)
     time.sleep(5)
-    print(video_url)
+    logger.info(video_url)
     # 첫번째 게시글
     #driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-main/div[2]/a[1]/div[1]/img').click()
     driver.find_element_by_xpath('//*[@id="page-wrap"]/mp-post-video-browse/mapia-post-video-list/div/div[3]/a[1]').click()
     time.sleep(5)
-    print('첫번째 게시글 들어왔음')
+    logger.info('첫번째 게시글 들어왔음')
 #    driver.find_element_by_xpath('//*[@id="write-page"]/div/div/div[3]/div/app-dailypoint/div/a').click()
 #    time.sleep(5)
 
@@ -118,20 +118,20 @@ def crawling(EMAIL, PASSWORD):
     logger.info('%s' % title)
     time.sleep(2)
     logger.info('[%s] comment = %s' % (datetime.datetime.now().strftime('%y%m%d %T'), COMMENT[RANDOM]))
-    print(title)
+    logger.info(title)
     # 댓글 입력창
 #    driver.find_element_by_xpath('//*[@id="comment-area-0"]').send_keys(COMMENT[RANDOM])
     driver.find_element_by_xpath('//*[@id="comment-area-0"]').send_keys(COMMENT[RANDOM])
     time.sleep(6)
-    print(COMMENT[RANDOM])
+    logger.info(COMMENT[RANDOM])
     # 댓글 작성
     #driver.find_element_by_xpath('//*[@id="blog"]/div/mapia-post-comment/div[1]/form/button').send_keys("\n")
     driver.find_element_by_xpath('//*[@id="blog"]/div/mp-post-comment/div/div[1]/form/div/button').send_keys("\n")
     time.sleep(10)
-    print('댓글 작성버튼 눌렀음')
+    logger.info('댓글 작성버튼 눌렀음')
     url = driver.current_url
     driver.close()
-    print(url)
+    logger.info(url)
     return url, COMMENT[RANDOM], title
 
 
