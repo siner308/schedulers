@@ -76,22 +76,22 @@ def crawling(EMAIL, PASSWORD):
 
     # 로그인 페이지로 이동하는 버튼
     #driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header/header/div/div[2]/a[1]').click()
-    driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header-v2/header/div/div[2]/a[3]').click()
+    driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header-v2/header/div/div[2]/a[4]').click()
     time.sleep(10)
     logger.info('로그인 눌렀음')
     # ID
     #driver.find_element_by_name('mapiaEmail').send_keys(EMAIL)
-    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/div[1]/mp-input-form/div[2]/input').send_keys(EMAIL)
+    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/div[1]/mp-input-form/div[1]/input').send_keys(EMAIL)
     time.sleep(3)
     logger.info('아이디 입력했음')
     # PASSWORD
     #driver.find_element_by_name('password').send_keys(PASSWORD)
-    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/div[2]/mp-input-form/div[2]/input').send_keys(PASSWORD)
+    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/div[2]/mp-input-form/div[1]/input').send_keys(PASSWORD)
     time.sleep(3)
     logger.info('비밀번호 입력했음')
     # 로그인 버튼
     #driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/button').click()
-    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/button').click()
+    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/button').click()
     time.sleep(10)
     logger.info('로그인 버튼 눌렀음')
     if driver.page_source.find('sinersound') == -1:
