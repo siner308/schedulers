@@ -6,6 +6,8 @@ import os
 import datetime
 import time
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
 from logger import get_my_logger
 from slack import slack_mapianist
 from environments import Env
@@ -87,15 +89,18 @@ def crawling(EMAIL, PASSWORD):
     logger.info('아이디 입력했음')
     # PASSWORD
     #driver.find_element_by_name('password').send_keys(PASSWORD)
-    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/ds-input[2]/div/input').send_keys(PASSWORD)
+    element = driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/ds-input[2]/div/input')
+    element.send_keys(PASSWORD)
     time.sleep(3)
     logger.info('비밀번호 입력했음')
+    element.send_keys(Keys.ENTER)
+    logger.info('엔터눌렀음')
     # 로그인 버튼
     #driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div[2]/form/button').click()
-    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/button').click()
+    # driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/button').send_keys(Keys.ENTER)
     time.sleep(10)
     logger.info('로그인 버튼 눌렀음')
-    if driver.page_source.find('로그인'):
+    if driver.page_source.find('로그인') != -1:
         logger.info('login failed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
     video_url = 'https://www.mapianist.com/video'
@@ -104,7 +109,7 @@ def crawling(EMAIL, PASSWORD):
     logger.info(video_url)
     # 첫번째 게시글
     #driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-main/div[2]/a[1]/div[1]/img').click()
-    driver.find_element_by_xpath('//*[@id="page-wrap"]/mp-post-video-browse/mapia-post-video-list/div/div[3]/a[1]').click()
+    driver.find_element_by_xpath('/html/body/root-cmp/div/community-browse/div[2]/community-home/community-recommend/div/div[1]/video-item[1]').click()
     time.sleep(5)
     logger.info('첫번째 게시글 들어왔음')
 #    driver.find_element_by_xpath('//*[@id="write-page"]/div/div/div[3]/div/app-dailypoint/div/a').click()
@@ -122,12 +127,12 @@ def crawling(EMAIL, PASSWORD):
     logger.info(title)
     # 댓글 입력창
 #    driver.find_element_by_xpath('//*[@id="comment-area-0"]').send_keys(COMMENT[RANDOM])
-    driver.find_element_by_xpath('//*[@id="comment-area-0"]').send_keys(COMMENT[RANDOM])
+    driver.find_element_by_xpath('/html/body/root-cmp/div/community-detail/div/mp-post-comment/div/ds-textarea/textarea').send_keys(COMMENT[RANDOM])
     time.sleep(6)
     logger.info(COMMENT[RANDOM])
     # 댓글 작성
     #driver.find_element_by_xpath('//*[@id="blog"]/div/mapia-post-comment/div[1]/form/button').send_keys("\n")
-    driver.find_element_by_xpath('//*[@id="blog"]/div/mp-post-comment/div/div[1]/form/div/button').send_keys("\n")
+    driver.find_element_by_xpath('/html/body/root-cmp/div/community-detail/div/mp-post-comment/div/ds-textarea/button').send_keys(Keys.ENTER)
     time.sleep(10)
     logger.info('댓글 작성버튼 눌렀음')
     url = driver.current_url
