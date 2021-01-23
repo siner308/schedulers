@@ -81,12 +81,13 @@ def crawling(EMAIL, PASSWORD):
     logger.info('로그인 눌렀음')
     # ID
     #driver.find_element_by_name('mapiaEmail').send_keys(EMAIL)
-    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/div[1]/mp-input-form/div[1]/input').send_keys(EMAIL)
+    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/ds-input[1]/div/input').send_keys(EMAIL)
+
     time.sleep(3)
     logger.info('아이디 입력했음')
     # PASSWORD
     #driver.find_element_by_name('password').send_keys(PASSWORD)
-    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/div[2]/mp-input-form/div[1]/input').send_keys(PASSWORD)
+    driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/ds-input[2]/div/input').send_keys(PASSWORD)
     time.sleep(3)
     logger.info('비밀번호 입력했음')
     # 로그인 버튼
