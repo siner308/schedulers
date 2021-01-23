@@ -95,7 +95,7 @@ def crawling(EMAIL, PASSWORD):
     driver.find_element_by_xpath('/html/body/modal-container/div/div/mapia-login-modal/div/mapia-login/div/div/mapia-email-login-form/div/form/button').click()
     time.sleep(10)
     logger.info('로그인 버튼 눌렀음')
-    if driver.page_source.find('sinersound') == -1:
+    if driver.page_source.find('로그인'):
         logger.info('login failed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
     video_url = 'https://www.mapianist.com/video'
