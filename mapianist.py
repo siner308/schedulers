@@ -131,8 +131,10 @@ def crawling(EMAIL, PASSWORD):
     logger.info(COMMENT[RANDOM])
     # 댓글 작성
     #driver.find_element_by_xpath('//*[@id="blog"]/div/mapia-post-comment/div[1]/form/button').send_keys("\n")
-    driver.find_element_by_xpath('/html/body/root-cmp/div/community-detail/div/mp-post-comment/div/ds-textarea/button').send_keys(Keys.ENTER)
-    time.sleep(10)
+    button = driver.find_element_by_xpath('/html/body/root-cmp/div/community-detail/div/mp-post-comment/div/ds-textarea/button')
+    driver.implicitly_wait(3)
+    button.send_keys(Keys.ENTER)
+    time.sleep(5)
     logger.info('댓글 작성버튼 눌렀음')
     url = driver.current_url
     driver.close()
