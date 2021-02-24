@@ -78,7 +78,7 @@ def crawling(EMAIL, PASSWORD):
 
     # 로그인 페이지로 이동하는 버튼
     #driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header/header/div/div[2]/a[1]').click()
-    driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header-v2/header/div/div[2]/a[4]').click()
+    driver.find_element_by_xpath('//*[@id="page-wrap"]/mapia-header-v2/header/div/div[2]/div[2]/a[1]').click()
     time.sleep(10)
     logger.info('로그인 눌렀음')
     # ID
