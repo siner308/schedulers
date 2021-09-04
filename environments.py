@@ -14,7 +14,7 @@ class Env:
             line = f.readline()
             if not line or line == '':
                 break
-            key_value = line.split('\n')[0].split(' = ')
+            key_value = line.split('\n')[0].split('=')
             key = key_value[0]
             value = key_value[1]
             self.data['%s' % key] = value

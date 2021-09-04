@@ -33,7 +33,8 @@ RUN apt-get update && apt-get autoremove && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN pip3 install -U pip && pip install selenium slacker
+#RUN pip3 install -U pip && pip3 install selenium slacker
+RUN pip3 install selenium slacker
 
 COPY . /app
 RUN chmod -R 755 /app
